@@ -43,7 +43,7 @@ h1{
   
   @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
   table{
-    background: -webkit-linear-gradient(left, #25c481, #4e4e4e);
+    background: -webkit-linear-gradient(left, #2f2f2f, #4e4e4e);
     background: linear-gradient(to right, #2f2f2f, #4e4e4e);
     font-family: 'Roboto', sans-serif;
   }
