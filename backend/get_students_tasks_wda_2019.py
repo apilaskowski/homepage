@@ -6,13 +6,14 @@ from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
 
 import time
+import sys
 
 students = {}
 
-contest = "https://www.hackerrank.com/contests/ap-"
+contest = "https://www.hackerrank.com/contests/wda-"
 leaderboard = "/leaderboard/"
 
-contest_link = "https://www.hackerrank.com/contests/pp-term/leaderboard/"
+contest_link = "https://www.hackerrank.com/contests/pp-winter-term/leaderboard/"
 
 def retrieve_leaderboard_info(driver, link):
     driver.get(link)
@@ -61,10 +62,21 @@ def print_html_table():
     print("');")
 
 def main():
-    driver = webdriver.Firefox()
+    debug = bool(sys.argv[1])
+    if debug:
+        print('Starting Safari')
+    driver = webdriver.Safari()
+    if debug:
+        print('Safari started')
 
-    for i in range(1, 13):
-        for j in range(1, 4):
+    if debug:
+        print('Crawling')
+    for i in range(1, 10):
+        if debug:
+            print('Page' + str(i))
+        for j in range(1, 6):
+            if debug:
+                print('Tab' + str(j))
             if i < 10:
                 link = contest + '0' + str(i) + leaderboard + str(j)
             elif i == 10:
@@ -72,9 +84,11 @@ def main():
             else:
                 link = contest + str(i) + leaderboard + str(j)            
 
+            if debug:
+                print('Retrieving leaderboard data')
             get_leaderboard_data(driver, link)
 
-    for j in range(1, 3):
+    for j in range(1, 5):
         link = contest_link + str(j)
         get_leaderboard_data(driver, link, True)
 
